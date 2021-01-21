@@ -4,15 +4,14 @@
 #
 Name     : cmake
 Version  : 3.19.3
-Release  : 106
-URL      : https://gitlab.kitware.com/cmake/cmake/-/archive/v3.19.3/cmake-v3.19.3.tar.gz
-Source0  : https://gitlab.kitware.com/cmake/cmake/-/archive/v3.19.3/cmake-v3.19.3.tar.gz
+Release  : 107
+URL      : file:///insilications/build/clearlinux/packages/cmake/cmake-v3.19.3.tar.gz
+Source0  : file:///insilications/build/clearlinux/packages/cmake/cmake-v3.19.3.tar.gz
 Summary  : A cross-platform open-source make system
 Group    : Development/Tools
-License  : 0BSD BSD-2-Clause BSD-3-Clause GPL-2.0 MIT Zlib bzip2-1.0.6
+License  : Apache-2.0
 Requires: cmake-bin = %{version}-%{release}
 Requires: cmake-data = %{version}-%{release}
-Requires: cmake-license = %{version}-%{release}
 BuildRequires : SDL-dev
 BuildRequires : VTK-dev
 BuildRequires : Vulkan-Headers-dev Vulkan-Loader-dev Vulkan-Tools
@@ -105,7 +104,6 @@ open-source projects such as ITK and VTK.
 Summary: bin components for the cmake package.
 Group: Binaries
 Requires: cmake-data = %{version}-%{release}
-Requires: cmake-license = %{version}-%{release}
 
 %description bin
 bin components for the cmake package.
@@ -131,68 +129,44 @@ Requires: cmake = %{version}-%{release}
 dev components for the cmake package.
 
 
-%package license
-Summary: license components for the cmake package.
-Group: Default
-
-%description license
-license components for the cmake package.
-
-
 %prep
-%setup -q -n cmake-v3.19.3
-cd %{_builddir}/cmake-v3.19.3
+%setup -q -n cmake
+cd %{_builddir}/cmake
 %patch1 -p1
 %patch2 -p1
 
 %build
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
+unset http_proxy
+unset https_proxy
+unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1610554069
+export SOURCE_DATE_EPOCH=1611230071
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=16 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=16 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=16 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=16 "
 %cmake .. -DCMAKE_USE_SYSTEM_EXPAT=ON  -DCMAKE_USE_SYSTEM_CURL=ON -DCMAKE_USE_SYSTEM_ZLIB=ON -DCMAKE_USE_SYSTEM_LIBRARY_BZIP2=ON -DCMAKE_USE_SYSTEM_LIBRARY_LIBARCHIVE=ON -DCMAKE_USE_SYSTEM_LIBRARY_JSONCPP=ON
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1610554069
+export SOURCE_DATE_EPOCH=1611230071
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/cmake
-cp %{_builddir}/cmake-v3.19.3/Copyright.txt %{buildroot}/usr/share/package-licenses/cmake/ae550eff6899c80386267aaaef38f4ff3ba65fad
-cp %{_builddir}/cmake-v3.19.3/Source/kwsys/Copyright.txt %{buildroot}/usr/share/package-licenses/cmake/5f78f21af8c8d27e0335d335a9dc9560bcc6f024
-cp %{_builddir}/cmake-v3.19.3/Utilities/KWIML/Copyright.txt %{buildroot}/usr/share/package-licenses/cmake/c18d58e8f2d8b07033608fc1aa496350dc7404a6
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmbzip2/LICENSE %{buildroot}/usr/share/package-licenses/cmake/ddf157bc55ed6dec9541e4af796294d666cd0926
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmcurl/COPYING %{buildroot}/usr/share/package-licenses/cmake/0a31fbdd5090bd461236bca4b1a86c79fd244d7a
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmexpat/COPYING %{buildroot}/usr/share/package-licenses/cmake/8623dd26727a708a49dbe6a52edb1d931d70816d
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmjsoncpp/LICENSE %{buildroot}/usr/share/package-licenses/cmake/d9bddd7f273bd065b5fdeb67afac0b26b6541a50
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmlibarchive/COPYING %{buildroot}/usr/share/package-licenses/cmake/a8393c2095373ba49b42b51120abf8e595138559
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmliblzma/COPYING %{buildroot}/usr/share/package-licenses/cmake/66933e63e70616b43f1dc60340491f8e050eedfd
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmlibrhash/COPYING %{buildroot}/usr/share/package-licenses/cmake/0331070c0279820f88665d626951e8dd765bd3a1
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmlibuv/LICENSE %{buildroot}/usr/share/package-licenses/cmake/848f7398f89046426a7ba23cb56cd3c93c030c64
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmnghttp2/COPYING %{buildroot}/usr/share/package-licenses/cmake/7f6f3c0c08925232459e499d66231cb5da01d811
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmzlib/Copyright.txt %{buildroot}/usr/share/package-licenses/cmake/eb7245cf0073b6f9dd00f6a98d63cda506f72714
-cp %{_builddir}/cmake-v3.19.3/Utilities/cmzstd/LICENSE %{buildroot}/usr/share/package-licenses/cmake/c4130945ca3d1f8ea4a3e8af36d3c18b2232116c
 pushd clr-build
 %make_install
 popd
 
 %files
 %defattr(-,root,root,-)
-/usr/doc/cmake-3.19/Copyright.txt
 /usr/doc/cmake-3.19/cmlibrhash/COPYING
 /usr/doc/cmake-3.19/cmlibuv/LICENSE
-/usr/doc/cmake-3.19/cmsys/Copyright.txt
 
 %files bin
 %defattr(-,root,root,-)
@@ -231,6 +205,7 @@ popd
 /usr/share/cmake-3.19/Help/command/cmake_language.rst
 /usr/share/cmake-3.19/Help/command/cmake_minimum_required.rst
 /usr/share/cmake-3.19/Help/command/cmake_parse_arguments.rst
+/usr/share/cmake-3.19/Help/command/cmake_path.rst
 /usr/share/cmake-3.19/Help/command/cmake_policy.rst
 /usr/share/cmake-3.19/Help/command/configure_file.rst
 /usr/share/cmake-3.19/Help/command/continue.rst
@@ -374,6 +349,7 @@ popd
 /usr/share/cmake-3.19/Help/envvar/CTEST_PARALLEL_LEVEL.rst
 /usr/share/cmake-3.19/Help/envvar/CTEST_PROGRESS_OUTPUT.rst
 /usr/share/cmake-3.19/Help/envvar/CTEST_USE_LAUNCHERS_DEFAULT.rst
+/usr/share/cmake-3.19/Help/envvar/CUDAARCHS.rst
 /usr/share/cmake-3.19/Help/envvar/CUDACXX.rst
 /usr/share/cmake-3.19/Help/envvar/CUDAFLAGS.rst
 /usr/share/cmake-3.19/Help/envvar/CUDAHOSTCXX.rst
@@ -423,9 +399,6 @@ popd
 "/usr/share/cmake-3.19/Help/generator/Visual Studio 9 2008.rst"
 "/usr/share/cmake-3.19/Help/generator/Watcom WMake.rst"
 /usr/share/cmake-3.19/Help/generator/Xcode.rst
-/usr/share/cmake-3.19/Help/include/COMPILE_DEFINITIONS_DISCLAIMER.txt
-/usr/share/cmake-3.19/Help/include/INTERFACE_INCLUDE_DIRECTORIES_WARNING.txt
-/usr/share/cmake-3.19/Help/include/INTERFACE_LINK_LIBRARIES_WARNING.txt
 /usr/share/cmake-3.19/Help/index.rst
 /usr/share/cmake-3.19/Help/manual/ID_RESERVE.txt
 /usr/share/cmake-3.19/Help/manual/LINKS.txt
@@ -839,6 +812,12 @@ popd
 /usr/share/cmake-3.19/Help/policy/CMP0112.rst
 /usr/share/cmake-3.19/Help/policy/CMP0113.rst
 /usr/share/cmake-3.19/Help/policy/CMP0114.rst
+/usr/share/cmake-3.19/Help/policy/CMP0115.rst
+/usr/share/cmake-3.19/Help/policy/CMP0116.rst
+/usr/share/cmake-3.19/Help/policy/CMP0117.rst
+/usr/share/cmake-3.19/Help/policy/CMP0118.rst
+/usr/share/cmake-3.19/Help/policy/CMP0119.rst
+/usr/share/cmake-3.19/Help/policy/CMP0120.rst
 /usr/share/cmake-3.19/Help/policy/DEPRECATED.txt
 /usr/share/cmake-3.19/Help/policy/DISALLOWED_COMMAND.txt
 /usr/share/cmake-3.19/Help/prop_cache/ADVANCED.rst
@@ -1098,6 +1077,7 @@ popd
 /usr/share/cmake-3.19/Help/prop_tgt/EXCLUDE_FROM_ALL.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXCLUDE_FROM_DEFAULT_BUILD.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXCLUDE_FROM_DEFAULT_BUILD_CONFIG.rst
+/usr/share/cmake-3.19/Help/prop_tgt/EXPORT_COMPILE_COMMANDS.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXPORT_NAME.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXPORT_PROPERTIES.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EchoString.rst
@@ -1263,6 +1243,7 @@ popd
 /usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_CODE_AFTER_INCLUDE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_CODE_BEFORE_INCLUDE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_MODE.rst
+/usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_UNIQUE_ID.rst
 /usr/share/cmake-3.19/Help/prop_tgt/VERSION.rst
 /usr/share/cmake-3.19/Help/prop_tgt/VISIBILITY_INLINES_HIDDEN.rst
 /usr/share/cmake-3.19/Help/prop_tgt/VS_CONFIGURATION_TYPE.rst
@@ -1306,6 +1287,10 @@ popd
 /usr/share/cmake-3.19/Help/prop_tgt/WIN32_EXECUTABLE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_ATTRIBUTE_an-attribute.rst
+/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_FRAMEWORKS_CODE_SIGN_ON_COPY.rst
+/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_FRAMEWORKS_REMOVE_HEADERS_ON_COPY.rst
+/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_type.rst
+/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_type_PATH.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_EXPLICIT_FILE_TYPE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_GENERATE_SCHEME.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_LINK_BUILD_PHASE_MODE.rst
@@ -1355,6 +1340,45 @@ popd
 /usr/share/cmake-3.19/Help/release/3.8.rst
 /usr/share/cmake-3.19/Help/release/3.9.rst
 /usr/share/cmake-3.19/Help/release/dev.txt
+/usr/share/cmake-3.19/Help/release/dev/0-sample-topic.rst
+/usr/share/cmake-3.19/Help/release/dev/ExternalData-suppress-progress.rst
+/usr/share/cmake-3.19/Help/release/dev/FindIntl-imported-target.rst
+/usr/share/cmake-3.19/Help/release/dev/FindPython-FIND_UNVERSIONED_NAMES.rst
+/usr/share/cmake-3.19/Help/release/dev/Java-export-native_headers-target.rst
+/usr/share/cmake-3.19/Help/release/dev/TestBigEndian-use-abi-result.rst
+/usr/share/cmake-3.19/Help/release/dev/abi-byte-order.rst
+/usr/share/cmake-3.19/Help/release/dev/after-option-in-target_include-directories.rst
+/usr/share/cmake-3.19/Help/release/dev/android-ndk.rst
+/usr/share/cmake-3.19/Help/release/dev/clang-tidy-objc.rst
+/usr/share/cmake-3.19/Help/release/dev/clang-win32-subsystem.rst
+/usr/share/cmake-3.19/Help/release/dev/cmake_path.rst
+/usr/share/cmake-3.19/Help/release/dev/configure_file-user-permissions.rst
+/usr/share/cmake-3.19/Help/release/dev/cpack-nsis-utf-8-bom.rst
+/usr/share/cmake-3.19/Help/release/dev/cpack-nuget.rst
+/usr/share/cmake-3.19/Help/release/dev/cpackifw-package-wizard-show-page-list.rst
+/usr/share/cmake-3.19/Help/release/dev/cpp-cuda-23.rst
+/usr/share/cmake-3.19/Help/release/dev/ctest-test-dir.rst
+/usr/share/cmake-3.19/Help/release/dev/cuda-archs-env.rst
+/usr/share/cmake-3.19/Help/release/dev/cuda-nvcc-ccache-symlink.rst
+/usr/share/cmake-3.19/Help/release/dev/custom-command-output-genex.rst
+/usr/share/cmake-3.19/Help/release/dev/explicit-LANGUAGE-flag.rst
+/usr/share/cmake-3.19/Help/release/dev/explicit-source-extensions.rst
+/usr/share/cmake-3.19/Help/release/dev/export-compile-commands-per-target.rst
+/usr/share/cmake-3.19/Help/release/dev/external-project-configure-handled-by-build.rst
+/usr/share/cmake-3.19/Help/release/dev/file-generate-permissions.rst
+/usr/share/cmake-3.19/Help/release/dev/fileapi-toolchains.rst
+/usr/share/cmake-3.19/Help/release/dev/install-files-rename-genex.rst
+/usr/share/cmake-3.19/Help/release/dev/make-GENERATED-visible-from-any-scope.rst
+/usr/share/cmake-3.19/Help/release/dev/makefile-depfile.rst
+/usr/share/cmake-3.19/Help/release/dev/makefiles-dependencies-use-compiler.rst
+/usr/share/cmake-3.19/Help/release/dev/msvc-no-GR.rst
+/usr/share/cmake-3.19/Help/release/dev/ninja-depfile-transformation.rst
+/usr/share/cmake-3.19/Help/release/dev/qt-autogen-per-config.rst
+/usr/share/cmake-3.19/Help/release/dev/remove-WCDH-module.rst
+/usr/share/cmake-3.19/Help/release/dev/remove-server-mode.rst
+/usr/share/cmake-3.19/Help/release/dev/target-sources-supports-custom-target.rst
+/usr/share/cmake-3.19/Help/release/dev/unity-build-anonymous-macros.rst
+/usr/share/cmake-3.19/Help/release/dev/xcode-embed-frameworks.rst
 /usr/share/cmake-3.19/Help/release/index.rst
 /usr/share/cmake-3.19/Help/variable/ANDROID.rst
 /usr/share/cmake-3.19/Help/variable/APPLE.rst
@@ -1371,6 +1395,7 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_ARM_MODE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_ARM_NEON.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_ASSETS_DIRECTORIES.rst
+/usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_EXCEPTIONS.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_GUI.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_JAR_DEPENDENCIES.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_JAR_DIRECTORIES.rst
@@ -1384,6 +1409,7 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_PROCESS_MAX.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_PROGUARD.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_PROGUARD_CONFIG_PATH.rst
+/usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_RTTI.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_SECURE_PROPS_PATH.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_SKIP_ANT_STEP.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_STANDALONE_TOOLCHAIN.rst
@@ -1476,6 +1502,7 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_DEFAULT_BUILD_TYPE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DEFAULT_CONFIGS.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DEPENDS_IN_PROJECT_ONLY.rst
+/usr/share/cmake-3.19/Help/variable/CMAKE_DEPENDS_USE_COMPILER.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DIRECTORY_LABELS.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DISABLE_PRECOMPILE_HEADERS.rst
@@ -1593,6 +1620,7 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_ARCHIVE_APPEND.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_ARCHIVE_CREATE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_ARCHIVE_FINISH.rst
+/usr/share/cmake-3.19/Help/variable/CMAKE_LANG_BYTE_ORDER.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_CLANG_TIDY.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_COMPILER.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_COMPILER_ABI.rst
@@ -1783,6 +1811,7 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_TWEAK_VERSION.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_UNITY_BUILD.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_UNITY_BUILD_BATCH_SIZE.rst
+/usr/share/cmake-3.19/Help/variable/CMAKE_UNITY_BUILD_UNIQUE_ID.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_USER_MAKE_RULES_OVERRIDE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_USER_MAKE_RULES_OVERRIDE_LANG.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_USE_RELATIVE_PATHS.rst
@@ -2956,9 +2985,10 @@ popd
 /usr/share/cmake-3.19/Modules/TestForSTDNamespace.cxx
 /usr/share/cmake-3.19/Modules/UseEcos.cmake
 /usr/share/cmake-3.19/Modules/UseJava.cmake
+/usr/share/cmake-3.19/Modules/UseJava/ClassFilelist.cmake
 /usr/share/cmake-3.19/Modules/UseJava/ClearClassFiles.cmake
-/usr/share/cmake-3.19/Modules/UseJavaClassFilelist.cmake
-/usr/share/cmake-3.19/Modules/UseJavaSymlinks.cmake
+/usr/share/cmake-3.19/Modules/UseJava/Symlinks.cmake
+/usr/share/cmake-3.19/Modules/UseJava/javaTargets.cmake.in
 /usr/share/cmake-3.19/Modules/UsePkgConfig.cmake
 /usr/share/cmake-3.19/Modules/UseQt4.cmake
 /usr/share/cmake-3.19/Modules/UseSWIG.cmake
@@ -2970,7 +3000,6 @@ popd
 /usr/share/cmake-3.19/Modules/WriteCompilerDetectionHeader.cmake
 /usr/share/cmake-3.19/Modules/ecos_clean.cmake
 /usr/share/cmake-3.19/Modules/exportheader.cmake.in
-/usr/share/cmake-3.19/Modules/javaTargets.cmake.in
 /usr/share/cmake-3.19/Modules/kde3init_dummy.cpp.in
 /usr/share/cmake-3.19/Modules/kde3uic.cmake
 /usr/share/cmake-3.19/Modules/readme.txt
@@ -3032,22 +3061,10 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/usr/doc/cmake-3.19/Copyright.txt
+/usr/doc/cmake-3.19/cmsys/Copyright.txt
 /usr/share/aclocal/*.m4
+/usr/share/cmake-3.19/Help/include/COMPILE_DEFINITIONS_DISCLAIMER.txt
+/usr/share/cmake-3.19/Help/include/INTERFACE_INCLUDE_DIRECTORIES_WARNING.txt
+/usr/share/cmake-3.19/Help/include/INTERFACE_LINK_LIBRARIES_WARNING.txt
 /usr/share/cmake-3.19/include/cmCPluginAPI.h
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/cmake/0331070c0279820f88665d626951e8dd765bd3a1
-/usr/share/package-licenses/cmake/0a31fbdd5090bd461236bca4b1a86c79fd244d7a
-/usr/share/package-licenses/cmake/5f78f21af8c8d27e0335d335a9dc9560bcc6f024
-/usr/share/package-licenses/cmake/66933e63e70616b43f1dc60340491f8e050eedfd
-/usr/share/package-licenses/cmake/7f6f3c0c08925232459e499d66231cb5da01d811
-/usr/share/package-licenses/cmake/848f7398f89046426a7ba23cb56cd3c93c030c64
-/usr/share/package-licenses/cmake/8623dd26727a708a49dbe6a52edb1d931d70816d
-/usr/share/package-licenses/cmake/a8393c2095373ba49b42b51120abf8e595138559
-/usr/share/package-licenses/cmake/ae550eff6899c80386267aaaef38f4ff3ba65fad
-/usr/share/package-licenses/cmake/c18d58e8f2d8b07033608fc1aa496350dc7404a6
-/usr/share/package-licenses/cmake/c4130945ca3d1f8ea4a3e8af36d3c18b2232116c
-/usr/share/package-licenses/cmake/d9bddd7f273bd065b5fdeb67afac0b26b6541a50
-/usr/share/package-licenses/cmake/ddf157bc55ed6dec9541e4af796294d666cd0926
-/usr/share/package-licenses/cmake/eb7245cf0073b6f9dd00f6a98d63cda506f72714
