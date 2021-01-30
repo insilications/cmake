@@ -3,10 +3,15 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are 
 # desirable. One name per line, no whitespace.
 bzip2-dev
+bzip2-staticdev
 expat-dev
+expat-staticdev
 jsoncpp-dev
 libarchive-dev
+libarchive-staticdev
 ncurses-dev
-xz-dev
-zlib-dev
 opencl-headers-dev
+xz-dev
+xz-staticdev
+zlib-dev
+zlib-staticdev
