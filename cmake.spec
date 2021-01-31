@@ -6,11 +6,11 @@
 Name     : cmake
 Version  : 3.19.4
 Release  : 107
-URL      : file:///insilications/build/clearlinux/packages/cmake/cmake-v3.19.4.tar.gz
-Source0  : file:///insilications/build/clearlinux/packages/cmake/cmake-v3.19.4.tar.gz
+URL      : https://github.com/Kitware/CMake/releases/download/v3.19.4/cmake-3.19.4.tar.gz
+Source0  : https://github.com/Kitware/CMake/releases/download/v3.19.4/cmake-3.19.4.tar.gz
 Summary  : A cross-platform open-source make system
 Group    : Development/Tools
-License  : Apache-2.0
+License  : GPL-2.0+
 Requires: cmake-bin = %{version}-%{release}
 Requires: cmake-data = %{version}-%{release}
 BuildRequires : SDL-dev
@@ -139,8 +139,8 @@ dev components for the cmake package.
 
 
 %prep
-%setup -q -n cmake
-cd %{_builddir}/cmake
+%setup -q -n cmake-3.19.4
+cd %{_builddir}/cmake-3.19.4
 %patch1 -p1
 %patch2 -p1
 
@@ -150,7 +150,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1612045144
+export SOURCE_DATE_EPOCH=1612084849
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -194,7 +194,7 @@ make  %{?_smp_mflags}  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1612045144
+export SOURCE_DATE_EPOCH=1612084849
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -242,7 +242,6 @@ popd
 /usr/share/cmake-3.19/Help/command/cmake_language.rst
 /usr/share/cmake-3.19/Help/command/cmake_minimum_required.rst
 /usr/share/cmake-3.19/Help/command/cmake_parse_arguments.rst
-/usr/share/cmake-3.19/Help/command/cmake_path.rst
 /usr/share/cmake-3.19/Help/command/cmake_policy.rst
 /usr/share/cmake-3.19/Help/command/configure_file.rst
 /usr/share/cmake-3.19/Help/command/continue.rst
@@ -386,7 +385,6 @@ popd
 /usr/share/cmake-3.19/Help/envvar/CTEST_PARALLEL_LEVEL.rst
 /usr/share/cmake-3.19/Help/envvar/CTEST_PROGRESS_OUTPUT.rst
 /usr/share/cmake-3.19/Help/envvar/CTEST_USE_LAUNCHERS_DEFAULT.rst
-/usr/share/cmake-3.19/Help/envvar/CUDAARCHS.rst
 /usr/share/cmake-3.19/Help/envvar/CUDACXX.rst
 /usr/share/cmake-3.19/Help/envvar/CUDAFLAGS.rst
 /usr/share/cmake-3.19/Help/envvar/CUDAHOSTCXX.rst
@@ -849,12 +847,6 @@ popd
 /usr/share/cmake-3.19/Help/policy/CMP0112.rst
 /usr/share/cmake-3.19/Help/policy/CMP0113.rst
 /usr/share/cmake-3.19/Help/policy/CMP0114.rst
-/usr/share/cmake-3.19/Help/policy/CMP0115.rst
-/usr/share/cmake-3.19/Help/policy/CMP0116.rst
-/usr/share/cmake-3.19/Help/policy/CMP0117.rst
-/usr/share/cmake-3.19/Help/policy/CMP0118.rst
-/usr/share/cmake-3.19/Help/policy/CMP0119.rst
-/usr/share/cmake-3.19/Help/policy/CMP0120.rst
 /usr/share/cmake-3.19/Help/policy/DEPRECATED.txt
 /usr/share/cmake-3.19/Help/policy/DISALLOWED_COMMAND.txt
 /usr/share/cmake-3.19/Help/prop_cache/ADVANCED.rst
@@ -1114,7 +1106,6 @@ popd
 /usr/share/cmake-3.19/Help/prop_tgt/EXCLUDE_FROM_ALL.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXCLUDE_FROM_DEFAULT_BUILD.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXCLUDE_FROM_DEFAULT_BUILD_CONFIG.rst
-/usr/share/cmake-3.19/Help/prop_tgt/EXPORT_COMPILE_COMMANDS.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXPORT_NAME.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EXPORT_PROPERTIES.rst
 /usr/share/cmake-3.19/Help/prop_tgt/EchoString.rst
@@ -1280,7 +1271,6 @@ popd
 /usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_CODE_AFTER_INCLUDE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_CODE_BEFORE_INCLUDE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_MODE.rst
-/usr/share/cmake-3.19/Help/prop_tgt/UNITY_BUILD_UNIQUE_ID.rst
 /usr/share/cmake-3.19/Help/prop_tgt/VERSION.rst
 /usr/share/cmake-3.19/Help/prop_tgt/VISIBILITY_INLINES_HIDDEN.rst
 /usr/share/cmake-3.19/Help/prop_tgt/VS_CONFIGURATION_TYPE.rst
@@ -1324,10 +1314,6 @@ popd
 /usr/share/cmake-3.19/Help/prop_tgt/WIN32_EXECUTABLE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_ATTRIBUTE_an-attribute.rst
-/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_FRAMEWORKS_CODE_SIGN_ON_COPY.rst
-/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_FRAMEWORKS_REMOVE_HEADERS_ON_COPY.rst
-/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_type.rst
-/usr/share/cmake-3.19/Help/prop_tgt/XCODE_EMBED_type_PATH.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_EXPLICIT_FILE_TYPE.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_GENERATE_SCHEME.rst
 /usr/share/cmake-3.19/Help/prop_tgt/XCODE_LINK_BUILD_PHASE_MODE.rst
@@ -1377,52 +1363,6 @@ popd
 /usr/share/cmake-3.19/Help/release/3.8.rst
 /usr/share/cmake-3.19/Help/release/3.9.rst
 /usr/share/cmake-3.19/Help/release/dev.txt
-/usr/share/cmake-3.19/Help/release/dev/0-sample-topic.rst
-/usr/share/cmake-3.19/Help/release/dev/ExternalData-suppress-progress.rst
-/usr/share/cmake-3.19/Help/release/dev/FindIntl-imported-target.rst
-/usr/share/cmake-3.19/Help/release/dev/FindPython-FIND_UNVERSIONED_NAMES.rst
-/usr/share/cmake-3.19/Help/release/dev/Java-export-native_headers-target.rst
-/usr/share/cmake-3.19/Help/release/dev/OUTPUT_DIRECTORY.rst
-/usr/share/cmake-3.19/Help/release/dev/TestBigEndian-use-abi-result.rst
-/usr/share/cmake-3.19/Help/release/dev/UseSWIG-dependencies.rst
-/usr/share/cmake-3.19/Help/release/dev/abi-byte-order.rst
-/usr/share/cmake-3.19/Help/release/dev/after-option-in-target_include-directories.rst
-/usr/share/cmake-3.19/Help/release/dev/android-ndk.rst
-/usr/share/cmake-3.19/Help/release/dev/clang-tidy-objc.rst
-/usr/share/cmake-3.19/Help/release/dev/clang-win32-subsystem.rst
-/usr/share/cmake-3.19/Help/release/dev/cmake_path.rst
-/usr/share/cmake-3.19/Help/release/dev/configure_file-user-permissions.rst
-/usr/share/cmake-3.19/Help/release/dev/cpack-compression-threads.rst
-/usr/share/cmake-3.19/Help/release/dev/cpack-deb-shlibdeps-private-search-dirs.rst
-/usr/share/cmake-3.19/Help/release/dev/cpack-nsis-utf-8-bom.rst
-/usr/share/cmake-3.19/Help/release/dev/cpack-nuget.rst
-/usr/share/cmake-3.19/Help/release/dev/cpackifw-package-wizard-show-page-list.rst
-/usr/share/cmake-3.19/Help/release/dev/cpp-cuda-23.rst
-/usr/share/cmake-3.19/Help/release/dev/ctest-test-dir.rst
-/usr/share/cmake-3.19/Help/release/dev/cuda-archs-env.rst
-/usr/share/cmake-3.19/Help/release/dev/cuda-nvcc-ccache-symlink.rst
-/usr/share/cmake-3.19/Help/release/dev/custom-command-output-genex.rst
-/usr/share/cmake-3.19/Help/release/dev/explicit-LANGUAGE-flag.rst
-/usr/share/cmake-3.19/Help/release/dev/explicit-source-extensions.rst
-/usr/share/cmake-3.19/Help/release/dev/export-compile-commands-per-target.rst
-/usr/share/cmake-3.19/Help/release/dev/external-project-configure-handled-by-build.rst
-/usr/share/cmake-3.19/Help/release/dev/file-generate-permissions.rst
-/usr/share/cmake-3.19/Help/release/dev/fileapi-toolchains.rst
-/usr/share/cmake-3.19/Help/release/dev/install-files-rename-genex.rst
-/usr/share/cmake-3.19/Help/release/dev/intel-llvm-compilers.rst
-/usr/share/cmake-3.19/Help/release/dev/make-GENERATED-visible-from-any-scope.rst
-/usr/share/cmake-3.19/Help/release/dev/makefile-depfile.rst
-/usr/share/cmake-3.19/Help/release/dev/makefiles-dependencies-use-compiler.rst
-/usr/share/cmake-3.19/Help/release/dev/msvc-no-GR.rst
-/usr/share/cmake-3.19/Help/release/dev/ninja-depfile-transformation.rst
-/usr/share/cmake-3.19/Help/release/dev/nvhpc-compiler.rst
-/usr/share/cmake-3.19/Help/release/dev/qt-autogen-per-config.rst
-/usr/share/cmake-3.19/Help/release/dev/rel-package-names.rst
-/usr/share/cmake-3.19/Help/release/dev/remove-WCDH-module.rst
-/usr/share/cmake-3.19/Help/release/dev/remove-server-mode.rst
-/usr/share/cmake-3.19/Help/release/dev/target-sources-supports-custom-target.rst
-/usr/share/cmake-3.19/Help/release/dev/unity-build-anonymous-macros.rst
-/usr/share/cmake-3.19/Help/release/dev/xcode-embed-frameworks.rst
 /usr/share/cmake-3.19/Help/release/index.rst
 /usr/share/cmake-3.19/Help/variable/ANDROID.rst
 /usr/share/cmake-3.19/Help/variable/APPLE.rst
@@ -1439,7 +1379,6 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_ARM_MODE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_ARM_NEON.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_ASSETS_DIRECTORIES.rst
-/usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_EXCEPTIONS.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_GUI.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_JAR_DEPENDENCIES.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_JAR_DIRECTORIES.rst
@@ -1453,7 +1392,6 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_PROCESS_MAX.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_PROGUARD.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_PROGUARD_CONFIG_PATH.rst
-/usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_RTTI.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_SECURE_PROPS_PATH.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_SKIP_ANT_STEP.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_ANDROID_STANDALONE_TOOLCHAIN.rst
@@ -1546,7 +1484,6 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_DEFAULT_BUILD_TYPE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DEFAULT_CONFIGS.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DEPENDS_IN_PROJECT_ONLY.rst
-/usr/share/cmake-3.19/Help/variable/CMAKE_DEPENDS_USE_COMPILER.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DIRECTORY_LABELS.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_DISABLE_PRECOMPILE_HEADERS.rst
@@ -1664,7 +1601,6 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_ARCHIVE_APPEND.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_ARCHIVE_CREATE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_ARCHIVE_FINISH.rst
-/usr/share/cmake-3.19/Help/variable/CMAKE_LANG_BYTE_ORDER.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_CLANG_TIDY.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_COMPILER.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_LANG_COMPILER_ABI.rst
@@ -1855,7 +1791,6 @@ popd
 /usr/share/cmake-3.19/Help/variable/CMAKE_TWEAK_VERSION.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_UNITY_BUILD.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_UNITY_BUILD_BATCH_SIZE.rst
-/usr/share/cmake-3.19/Help/variable/CMAKE_UNITY_BUILD_UNIQUE_ID.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_USER_MAKE_RULES_OVERRIDE.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_USER_MAKE_RULES_OVERRIDE_LANG.rst
 /usr/share/cmake-3.19/Help/variable/CMAKE_USE_RELATIVE_PATHS.rst
@@ -2346,12 +2281,6 @@ popd
 /usr/share/cmake-3.19/Modules/Compiler/Intel-Fortran.cmake
 /usr/share/cmake-3.19/Modules/Compiler/Intel-ISPC.cmake
 /usr/share/cmake-3.19/Modules/Compiler/Intel.cmake
-/usr/share/cmake-3.19/Modules/Compiler/IntelLLVM-ASM.cmake
-/usr/share/cmake-3.19/Modules/Compiler/IntelLLVM-C.cmake
-/usr/share/cmake-3.19/Modules/Compiler/IntelLLVM-CXX.cmake
-/usr/share/cmake-3.19/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake
-/usr/share/cmake-3.19/Modules/Compiler/IntelLLVM-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Compiler/IntelLLVM.cmake
 /usr/share/cmake-3.19/Modules/Compiler/MSVC-ASM.cmake
 /usr/share/cmake-3.19/Modules/Compiler/MSVC-C-FeatureTests.cmake
 /usr/share/cmake-3.19/Modules/Compiler/MSVC-C.cmake
@@ -2359,11 +2288,6 @@ popd
 /usr/share/cmake-3.19/Modules/Compiler/MSVC-CXX.cmake
 /usr/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake
 /usr/share/cmake-3.19/Modules/Compiler/NAG-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Compiler/NVHPC-C.cmake
-/usr/share/cmake-3.19/Modules/Compiler/NVHPC-CXX.cmake
-/usr/share/cmake-3.19/Modules/Compiler/NVHPC-DetermineCompiler.cmake
-/usr/share/cmake-3.19/Modules/Compiler/NVHPC-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Compiler/NVHPC.cmake
 /usr/share/cmake-3.19/Modules/Compiler/NVIDIA-CUDA.cmake
 /usr/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake
 /usr/share/cmake-3.19/Modules/Compiler/OpenWatcom-C.cmake
@@ -2782,10 +2706,6 @@ popd
 /usr/share/cmake-3.19/Modules/Platform/Apple-Intel-CXX.cmake
 /usr/share/cmake-3.19/Modules/Platform/Apple-Intel-Fortran.cmake
 /usr/share/cmake-3.19/Modules/Platform/Apple-Intel.cmake
-/usr/share/cmake-3.19/Modules/Platform/Apple-IntelLLVM-C.cmake
-/usr/share/cmake-3.19/Modules/Platform/Apple-IntelLLVM-CXX.cmake
-/usr/share/cmake-3.19/Modules/Platform/Apple-IntelLLVM-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Platform/Apple-IntelLLVM.cmake
 /usr/share/cmake-3.19/Modules/Platform/Apple-NAG-Fortran.cmake
 /usr/share/cmake-3.19/Modules/Platform/Apple-NVIDIA-CUDA.cmake
 /usr/share/cmake-3.19/Modules/Platform/Apple-PGI-C.cmake
@@ -2888,15 +2808,7 @@ popd
 /usr/share/cmake-3.19/Modules/Platform/Linux-Intel-CXX.cmake
 /usr/share/cmake-3.19/Modules/Platform/Linux-Intel-Fortran.cmake
 /usr/share/cmake-3.19/Modules/Platform/Linux-Intel.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-IntelLLVM-C.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-IntelLLVM-CXX.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-IntelLLVM-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-IntelLLVM.cmake
 /usr/share/cmake-3.19/Modules/Platform/Linux-NAG-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-NVHPC-C.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-NVHPC-CXX.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-NVHPC-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Platform/Linux-NVHPC.cmake
 /usr/share/cmake-3.19/Modules/Platform/Linux-OpenWatcom-C.cmake
 /usr/share/cmake-3.19/Modules/Platform/Linux-OpenWatcom-CXX.cmake
 /usr/share/cmake-3.19/Modules/Platform/Linux-OpenWatcom.cmake
@@ -2976,11 +2888,6 @@ popd
 /usr/share/cmake-3.19/Modules/Platform/Windows-Intel-Fortran.cmake
 /usr/share/cmake-3.19/Modules/Platform/Windows-Intel-ISPC.cmake
 /usr/share/cmake-3.19/Modules/Platform/Windows-Intel.cmake
-/usr/share/cmake-3.19/Modules/Platform/Windows-IntelLLVM-ASM.cmake
-/usr/share/cmake-3.19/Modules/Platform/Windows-IntelLLVM-C.cmake
-/usr/share/cmake-3.19/Modules/Platform/Windows-IntelLLVM-CXX.cmake
-/usr/share/cmake-3.19/Modules/Platform/Windows-IntelLLVM-Fortran.cmake
-/usr/share/cmake-3.19/Modules/Platform/Windows-IntelLLVM.cmake
 /usr/share/cmake-3.19/Modules/Platform/Windows-MSVC-C.cmake
 /usr/share/cmake-3.19/Modules/Platform/Windows-MSVC-CXX.cmake
 /usr/share/cmake-3.19/Modules/Platform/Windows-MSVC.cmake
@@ -3057,10 +2964,9 @@ popd
 /usr/share/cmake-3.19/Modules/TestForSTDNamespace.cxx
 /usr/share/cmake-3.19/Modules/UseEcos.cmake
 /usr/share/cmake-3.19/Modules/UseJava.cmake
-/usr/share/cmake-3.19/Modules/UseJava/ClassFilelist.cmake
 /usr/share/cmake-3.19/Modules/UseJava/ClearClassFiles.cmake
-/usr/share/cmake-3.19/Modules/UseJava/Symlinks.cmake
-/usr/share/cmake-3.19/Modules/UseJava/javaTargets.cmake.in
+/usr/share/cmake-3.19/Modules/UseJavaClassFilelist.cmake
+/usr/share/cmake-3.19/Modules/UseJavaSymlinks.cmake
 /usr/share/cmake-3.19/Modules/UsePkgConfig.cmake
 /usr/share/cmake-3.19/Modules/UseQt4.cmake
 /usr/share/cmake-3.19/Modules/UseSWIG.cmake
@@ -3072,6 +2978,7 @@ popd
 /usr/share/cmake-3.19/Modules/WriteCompilerDetectionHeader.cmake
 /usr/share/cmake-3.19/Modules/ecos_clean.cmake
 /usr/share/cmake-3.19/Modules/exportheader.cmake.in
+/usr/share/cmake-3.19/Modules/javaTargets.cmake.in
 /usr/share/cmake-3.19/Modules/kde3init_dummy.cpp.in
 /usr/share/cmake-3.19/Modules/kde3uic.cmake
 /usr/share/cmake-3.19/Modules/readme.txt
