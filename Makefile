@@ -1,5 +1,5 @@
 PKG_NAME := cmake
-URL = https://github.com/Kitware/CMake/releases/download/v3.19.4/cmake-3.19.4.tar.gz
+URL = https://gitlab.kitware.com/cmake/cmake.git
 ARCHIVES = 
 
 include ../common/Makefile.common
