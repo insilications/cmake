@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : cmake
-Version  : 3.19.6
+Version  : 3.20.0
 Release  : 107
-URL      : file:///aot/build/clearlinux/packages/cmake/cmake-v3.19.6.tar.gz
-Source0  : file:///aot/build/clearlinux/packages/cmake/cmake-v3.19.6.tar.gz
+URL      : file:///aot/build/clearlinux/packages/cmake/cmake-v3.20.0.tar.gz
+Source0  : file:///aot/build/clearlinux/packages/cmake/cmake-v3.20.0.tar.gz
 Summary  : A cross-platform open-source make system
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0+
@@ -97,8 +97,6 @@ BuildRequires : zlib-staticdev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
-Patch1: build.patch
-Patch2: fix-x11.patch
 
 %description
 CMake is an open-source, cross-platform family of tools designed to build, test
@@ -141,8 +139,6 @@ dev components for the cmake package.
 %prep
 %setup -q -n cmake
 cd %{_builddir}/cmake
-%patch1 -p1
-%patch2 -p1
 
 %build
 unset http_proxy
@@ -150,7 +146,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1615240999
+export SOURCE_DATE_EPOCH=1616661762
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -194,7 +190,7 @@ make  %{?_smp_mflags}  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1615240999
+export SOURCE_DATE_EPOCH=1616661762
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -1380,12 +1376,20 @@ popd
 /usr/share/cmake-3.20/Help/release/3.9.rst
 /usr/share/cmake-3.20/Help/release/dev.txt
 /usr/share/cmake-3.20/Help/release/dev/0-sample-topic.rst
+/usr/share/cmake-3.20/Help/release/dev/FindDevIL-imported-targets.rst
 /usr/share/cmake-3.20/Help/release/dev/FindIconv-version.rst
 /usr/share/cmake-3.20/Help/release/dev/FindIntl-version.rst
 /usr/share/cmake-3.20/Help/release/dev/c-std.rst
+/usr/share/cmake-3.20/Help/release/dev/cmake-install-prefix-command.rst
+/usr/share/cmake-3.20/Help/release/dev/cmake-presets-condition.rst
+/usr/share/cmake-3.20/Help/release/dev/cmake-presets-host-system-name.rst
+/usr/share/cmake-3.20/Help/release/dev/cmake-system-name-version.rst
 /usr/share/cmake-3.20/Help/release/dev/cpack-dmg-filesystem.rst
 /usr/share/cmake-3.20/Help/release/dev/cpack-nsis-executable-name.rst
+/usr/share/cmake-3.20/Help/release/dev/cxx-module-extensions.rst
+/usr/share/cmake-3.20/Help/release/dev/file-COPY_FILE.rst
 /usr/share/cmake-3.20/Help/release/dev/file-RENAME.rst
+/usr/share/cmake-3.20/Help/release/dev/fileapi-codemodel-directory.rst
 /usr/share/cmake-3.20/Help/release/dev/list-index-arg-parsing.rst
 /usr/share/cmake-3.20/Help/release/dev/runtime-dll-deps.rst
 /usr/share/cmake-3.20/Help/release/index.rst
@@ -2411,24 +2415,14 @@ popd
 /usr/share/cmake-3.20/Modules/DummyCXXFile.cxx
 /usr/share/cmake-3.20/Modules/ExternalData.cmake
 /usr/share/cmake-3.20/Modules/ExternalData_config.cmake.in
+/usr/share/cmake-3.20/Modules/ExternalProject-download.cmake.in
+/usr/share/cmake-3.20/Modules/ExternalProject-gitupdate.cmake.in
+/usr/share/cmake-3.20/Modules/ExternalProject-verify.cmake.in
 /usr/share/cmake-3.20/Modules/ExternalProject.cmake
-/usr/share/cmake-3.20/Modules/ExternalProject/RepositoryInfo.txt.in
-/usr/share/cmake-3.20/Modules/ExternalProject/captured_process_setup.cmake
-/usr/share/cmake-3.20/Modules/ExternalProject/cfgcmd.txt.in
-/usr/share/cmake-3.20/Modules/ExternalProject/copydir.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/customcommand.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/customcommand_preamble.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/download.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/extractfile.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/gitclone.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/gitupdate.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/hgclone.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/hgupdate.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/mkdirs.cmake.in
-/usr/share/cmake-3.20/Modules/ExternalProject/verify.cmake.in
 /usr/share/cmake-3.20/Modules/FLTKCompatibility.cmake
 /usr/share/cmake-3.20/Modules/FeatureSummary.cmake
 /usr/share/cmake-3.20/Modules/FetchContent.cmake
+/usr/share/cmake-3.20/Modules/FetchContent/CMakeLists.cmake.in
 /usr/share/cmake-3.20/Modules/FindALSA.cmake
 /usr/share/cmake-3.20/Modules/FindASPELL.cmake
 /usr/share/cmake-3.20/Modules/FindAVIFile.cmake
@@ -3012,6 +3006,7 @@ popd
 /usr/share/cmake-3.20/Modules/ProcessorCount.cmake
 /usr/share/cmake-3.20/Modules/Qt4ConfigDependentSettings.cmake
 /usr/share/cmake-3.20/Modules/Qt4Macros.cmake
+/usr/share/cmake-3.20/Modules/RepositoryInfo.txt.in
 /usr/share/cmake-3.20/Modules/SelectLibraryConfigurations.cmake
 /usr/share/cmake-3.20/Modules/Squish4RunTestCase.bat
 /usr/share/cmake-3.20/Modules/Squish4RunTestCase.sh
