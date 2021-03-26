@@ -4,14 +4,23 @@
 # desirable. One name per line, no whitespace.
 bzip2-dev
 bzip2-staticdev
+curl-dev
+curl-staticdev
 expat-dev
 expat-staticdev
 jsoncpp-dev
 jsoncpp-staticdev
 libarchive-dev
 libarchive-staticdev
+lz4
+lz4-dev
+lz4-staticdev
+lzo
+lzo-dev
+lzo-staticdev
 ncurses-dev
 opencl-headers-dev
+openssl-dev
 qca-qt5
 qca-qt5-dev
 qt3d
@@ -65,5 +74,3 @@ zlib-dev
 zlib-staticdev
 zstd-dev
 zstd-staticdev
-curl-dev
-curl-staticdev
