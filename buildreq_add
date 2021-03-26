@@ -1,13 +1,14 @@
 #
 #
 # This file contains extra pkgconfig build requirements that don't get picked up but are
-# desirable. One name per line, no whitespace.
-bzip2-dev
+# desirable. One name per line, no whitespace.bzip2-dev
 bzip2-staticdev
 curl-dev
 curl-staticdev
 expat-dev
 expat-staticdev
+graphite
+graphite-dev
 jsoncpp-dev
 jsoncpp-staticdev
 libarchive-dev
