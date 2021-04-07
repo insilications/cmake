@@ -5,62 +5,117 @@
 %define keepstatic 1
 Name     : cmake
 Version  : 3.20.0
-Release  : 107
+Release  : 1
 URL      : file:///aot/build/clearlinux/packages/cmake/cmake-v3.20.0.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/cmake/cmake-v3.20.0.tar.gz
-Summary  : A cross-platform open-source make system
+Summary  : General purpose data compression library
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0+
 Requires: cmake-bin = %{version}-%{release}
 Requires: cmake-data = %{version}-%{release}
+Requires: cmake-man = %{version}-%{release}
 BuildRequires : SDL-dev
 BuildRequires : VTK-dev
 BuildRequires : Vulkan-Headers-dev Vulkan-Loader-dev Vulkan-Tools
+BuildRequires : Z3-dev
+BuildRequires : Z3-staticdev
 BuildRequires : alsa-lib-dev
 BuildRequires : armadillo-data
 BuildRequires : bash coreutils gzip
+BuildRequires : binutils-dev
 BuildRequires : bison-dev
 BuildRequires : boost-dev
+BuildRequires : brotli
+BuildRequires : brotli-dev
+BuildRequires : brotli-staticdev
 BuildRequires : buildreq-cmake
 BuildRequires : bzip2-dev
 BuildRequires : bzip2-staticdev
+BuildRequires : cairo-lib
 BuildRequires : cmake
 BuildRequires : cups-dev
 BuildRequires : curl-dev
+BuildRequires : curl-staticdev
+BuildRequires : dbus-dev
 BuildRequires : doxygen
+BuildRequires : e2fsprogs-dev
+BuildRequires : elfutils-dev
 BuildRequires : expat-dev
 BuildRequires : expat-staticdev
+BuildRequires : findutils
 BuildRequires : flex
+BuildRequires : fontconfig-data
+BuildRequires : fontconfig-lib
 BuildRequires : freetype-dev
+BuildRequires : freetype-lib
+BuildRequires : gcc-dev
 BuildRequires : gdal-dev
 BuildRequires : git
 BuildRequires : glew-dev
+BuildRequires : glib
+BuildRequires : glib-bin
+BuildRequires : glib-data
+BuildRequires : glib-dev
+BuildRequires : glib-lib
 BuildRequires : glibc-dev
+BuildRequires : glibc-staticdev
 BuildRequires : gnutls-dev
 BuildRequires : googletest-dev
 BuildRequires : gsl-dev
 BuildRequires : gtk+-dev
+BuildRequires : harfbuzz-dev
+BuildRequires : harfbuzz-lib
+BuildRequires : harfbuzz-staticdev
 BuildRequires : hdf5-dev
 BuildRequires : icu4c-dev
+BuildRequires : icu4c-lib
+BuildRequires : jsoncpp
 BuildRequires : jsoncpp-dev
+BuildRequires : jsoncpp-lib
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86vm-dev
 BuildRequires : libarchive-dev
-BuildRequires : libarchive-staticdev
+BuildRequires : libedit
+BuildRequires : libedit-dev
+BuildRequires : libffi
+BuildRequires : libffi-dev
+BuildRequires : libffi-staticdev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : libpng-dev
 BuildRequires : libssh-dev
+BuildRequires : libstdc++
+BuildRequires : libstdc++-dev
+BuildRequires : libunwind
+BuildRequires : libunwind-dev
+BuildRequires : libunwind-staticdev
 BuildRequires : libxml2-dev
 BuildRequires : libxslt-dev
 BuildRequires : lua-dev
+BuildRequires : lz4
+BuildRequires : lz4-dev
+BuildRequires : lz4-staticdev
+BuildRequires : lzo
+BuildRequires : lzo-dev
+BuildRequires : lzo-staticdev
+BuildRequires : md4c
+BuildRequires : md4c-dev
+BuildRequires : md4c-staticdev
 BuildRequires : mesa-dev
 BuildRequires : ncurses-dev
 BuildRequires : openblas
-BuildRequires : opencl-headers-dev
+BuildRequires : openjdk13
+BuildRequires : openjdk13-dev
 BuildRequires : openmpi-dev
 BuildRequires : openssl-dev
+BuildRequires : openssl-lib
+BuildRequires : openssl-staticdev
+BuildRequires : p11-kit
+BuildRequires : p11-kit-dev
 BuildRequires : patch
+BuildRequires : pcre-dev
+BuildRequires : pcre-staticdev
 BuildRequires : perl
 BuildRequires : php-dev
+BuildRequires : pixman-lib
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(expat)
 BuildRequires : pkgconfig(fontconfig)
@@ -83,29 +138,41 @@ BuildRequires : python3-dev
 BuildRequires : qtbase-dev
 BuildRequires : qtbase-dev mesa-dev
 BuildRequires : ruby
+BuildRequires : sqlite-autoconf
+BuildRequires : sqlite-autoconf-dev
+BuildRequires : sqlite-autoconf-staticdev
 BuildRequires : subversion
 BuildRequires : swig
+BuildRequires : systemd
+BuildRequires : systemd-dev
 BuildRequires : tcl
 BuildRequires : tcl-dev tk-dev
 BuildRequires : texlive
 BuildRequires : tiff-dev
+BuildRequires : util-linux
+BuildRequires : util-linux-dev
+BuildRequires : util-linux-staticdev
 BuildRequires : wget
 BuildRequires : xz-dev
-BuildRequires : xz-staticdev
+BuildRequires : yaml-cpp
+BuildRequires : yaml-cpp-dev
+BuildRequires : zlib
 BuildRequires : zlib-dev
 BuildRequires : zlib-staticdev
+BuildRequires : zstd-dev
+BuildRequires : zstd-staticdev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
 
 %description
-CMake is an open-source, cross-platform family of tools designed to build, test
-and package software. CMake is used to control the software compilation process
-using simple platform and compiler independent configuration files, and
-generate native makefiles and workspaces that can be used in the compiler
-environment of your choice. The suite of CMake tools were created by Kitware in
-response to the need for a powerful, cross-platform build environment for
-open-source projects such as ITK and VTK.
+ZLIB DATA COMPRESSION LIBRARY
+zlib 1.2.3 is a general purpose data compression library.  All the code is
+thread safe.  The data format used by the zlib library is described by RFCs
+(Request for Comments) 1950 to 1952 in the files
+http://www.ietf.org/rfc/rfc1950.txt (zlib format), rfc1951.txt (deflate format)
+and rfc1952.txt (gzip format). These documents are also available in other
+formats from ftp://ftp.uu.net/graphics/png/documents/zlib/zdoc-index.html
 
 %package bin
 Summary: bin components for the cmake package.
@@ -136,6 +203,14 @@ Requires: cmake = %{version}-%{release}
 dev components for the cmake package.
 
 
+%package man
+Summary: man components for the cmake package.
+Group: Default
+
+%description man
+man components for the cmake package.
+
+
 %prep
 %setup -q -n cmake
 cd %{_builddir}/cmake
@@ -146,7 +221,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1616661762
+export SOURCE_DATE_EPOCH=1617788427
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -185,12 +260,24 @@ export CCACHE_BASEDIR=/builddir/build/BUILD
 #export CCACHE_DEBUG=true
 #export CCACHE_NODIRECT=true
 ## altflags1 end
-%cmake .. -DCMAKE_USE_SYSTEM_EXPAT=ON  -DCMAKE_USE_SYSTEM_CURL=ON -DCMAKE_USE_SYSTEM_ZLIB=ON -DCMAKE_USE_SYSTEM_LIBRARY_BZIP2=ON -DCMAKE_USE_SYSTEM_LIBRARY_LIBARCHIVE=ON -DCMAKE_USE_SYSTEM_LIBRARY_JSONCPP=ON
+%cmake .. -DCMAKE_USE_SYSTEM_EXPAT=ON \
+-DCMAKE_USE_SYSTEM_ZSTD=ON \
+-DCMAKE_USE_SYSTEM_CURL=ON \
+-DCMAKE_USE_SYSTEM_ZLIB=ON \
+-DCMAKE_USE_SYSTEM_LIBLZMA=ON \
+-DCMAKE_USE_SYSTEM_BZIP2=ON \
+-DCMAKE_USE_SYSTEM_LIBARCHIVE=ON \
+-DCMAKE_USE_SYSTEM_JSONCPP=ON \
+-DCMake_BUILD_LTO=ON \
+-DCMAKE_BUILD_LTO=ON \
+-DBUILD_QtDialog=ON \
+-DBUILD_CursesDialog=ON \
+-DBUILD_TESTING=OFF
 make  %{?_smp_mflags}  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1616661762
+export SOURCE_DATE_EPOCH=1617788427
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -205,11 +292,13 @@ popd
 %defattr(-,root,root,-)
 /usr/bin/ccmake
 /usr/bin/cmake
+/usr/bin/cmake-gui
 /usr/bin/cpack
 /usr/bin/ctest
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/applications/cmake-gui.desktop
 /usr/share/bash-completion/completions/cmake
 /usr/share/bash-completion/completions/cpack
 /usr/share/bash-completion/completions/ctest
@@ -852,6 +941,7 @@ popd
 /usr/share/cmake-3.20/Help/policy/CMP0119.rst
 /usr/share/cmake-3.20/Help/policy/CMP0120.rst
 /usr/share/cmake-3.20/Help/policy/CMP0121.rst
+/usr/share/cmake-3.20/Help/policy/CMP0122.rst
 /usr/share/cmake-3.20/Help/policy/DEPRECATED.txt
 /usr/share/cmake-3.20/Help/policy/DISALLOWED_COMMAND.txt
 /usr/share/cmake-3.20/Help/prop_cache/ADVANCED.rst
@@ -1379,6 +1469,7 @@ popd
 /usr/share/cmake-3.20/Help/release/dev/FindDevIL-imported-targets.rst
 /usr/share/cmake-3.20/Help/release/dev/FindIconv-version.rst
 /usr/share/cmake-3.20/Help/release/dev/FindIntl-version.rst
+/usr/share/cmake-3.20/Help/release/dev/UseSWIG-csharp.rst
 /usr/share/cmake-3.20/Help/release/dev/c-std.rst
 /usr/share/cmake-3.20/Help/release/dev/cmake-install-prefix-command.rst
 /usr/share/cmake-3.20/Help/release/dev/cmake-presets-condition.rst
@@ -1390,7 +1481,10 @@ popd
 /usr/share/cmake-3.20/Help/release/dev/file-COPY_FILE.rst
 /usr/share/cmake-3.20/Help/release/dev/file-RENAME.rst
 /usr/share/cmake-3.20/Help/release/dev/fileapi-codemodel-directory.rst
+/usr/share/cmake-3.20/Help/release/dev/fujitsu-compiler-support.rst
+/usr/share/cmake-3.20/Help/release/dev/ifw-default-version-operator.rst
 /usr/share/cmake-3.20/Help/release/dev/list-index-arg-parsing.rst
+/usr/share/cmake-3.20/Help/release/dev/project-is-top-level.rst
 /usr/share/cmake-3.20/Help/release/dev/runtime-dll-deps.rst
 /usr/share/cmake-3.20/Help/release/index.rst
 /usr/share/cmake-3.20/Help/variable/ANDROID.rst
@@ -1991,6 +2085,7 @@ popd
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_BINARY_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_DESCRIPTION.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_HOMEPAGE_URL.rst
+/usr/share/cmake-3.20/Help/variable/PROJECT-NAME_IS_TOP_LEVEL.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_SOURCE_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_VERSION.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_VERSION_MAJOR.rst
@@ -2000,6 +2095,7 @@ popd
 /usr/share/cmake-3.20/Help/variable/PROJECT_BINARY_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_DESCRIPTION.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_HOMEPAGE_URL.rst
+/usr/share/cmake-3.20/Help/variable/PROJECT_IS_TOP_LEVEL.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_NAME.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_SOURCE_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_VERSION.rst
@@ -2276,7 +2372,15 @@ popd
 /usr/share/cmake-3.20/Modules/Compiler/Embarcadero-DetermineCompiler.cmake
 /usr/share/cmake-3.20/Modules/Compiler/Flang-FindBinUtils.cmake
 /usr/share/cmake-3.20/Modules/Compiler/Flang-Fortran.cmake
+/usr/share/cmake-3.20/Modules/Compiler/Fujitsu-C.cmake
+/usr/share/cmake-3.20/Modules/Compiler/Fujitsu-CXX.cmake
 /usr/share/cmake-3.20/Modules/Compiler/Fujitsu-DetermineCompiler.cmake
+/usr/share/cmake-3.20/Modules/Compiler/Fujitsu-Fortran.cmake
+/usr/share/cmake-3.20/Modules/Compiler/Fujitsu.cmake
+/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang-C.cmake
+/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang-CXX.cmake
+/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake
+/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang.cmake
 /usr/share/cmake-3.20/Modules/Compiler/G95-Fortran.cmake
 /usr/share/cmake-3.20/Modules/Compiler/GHS-C.cmake
 /usr/share/cmake-3.20/Modules/Compiler/GHS-CXX.cmake
@@ -2851,6 +2955,9 @@ popd
 /usr/share/cmake-3.20/Modules/Platform/Linux-Clang-C.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-Clang-CXX.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-Determine-CXX.cmake
+/usr/share/cmake-3.20/Modules/Platform/Linux-Fujitsu-C.cmake
+/usr/share/cmake-3.20/Modules/Platform/Linux-Fujitsu-CXX.cmake
+/usr/share/cmake-3.20/Modules/Platform/Linux-Fujitsu.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-GNU-C.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-GNU-CXX.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-GNU-Fortran.cmake
@@ -3099,6 +3206,9 @@ popd
 /usr/share/cmake-3.20/Templates/Windows/StoreLogo.png
 /usr/share/cmake-3.20/Templates/Windows/Windows_TemporaryKey.pfx
 /usr/share/emacs/site-lisp/cmake-mode.el
+/usr/share/icons/hicolor/128x128/apps/CMakeSetup.png
+/usr/share/icons/hicolor/32x32/apps/CMakeSetup.png
+/usr/share/mime-packages/cmakecache.xml
 /usr/share/vim/vimfiles/indent/cmake.vim
 /usr/share/vim/vimfiles/syntax/cmake.vim
 
@@ -3111,3 +3221,6 @@ popd
 /usr/share/cmake-3.20/Help/include/INTERFACE_INCLUDE_DIRECTORIES_WARNING.txt
 /usr/share/cmake-3.20/Help/include/INTERFACE_LINK_LIBRARIES_WARNING.txt
 /usr/share/cmake-3.20/include/cmCPluginAPI.h
+
+%files man
+%defattr(0644,root,root,0755)
