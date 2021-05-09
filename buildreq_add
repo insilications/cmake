@@ -54,6 +54,7 @@ libstdc++
 libstdc++-dev
 libunistring
 libunistring-dev
+libunistring-staticdev
 libunwind
 libunwind-dev
 libxml2-dev
