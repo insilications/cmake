@@ -10,6 +10,7 @@ cmake
 compat-jsoncpp-soname-184
 compat-jsoncpp-soname-184-lib
 curl-dev
+curl-staticdev
 dbus-dev
 doxygen
 e2fsprogs-dev

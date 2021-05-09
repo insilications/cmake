@@ -1,0 +1,4 @@
+sd "/usr/lib64/libz.so" "/usr/lib64/libz.a" -r "*.txt"
+sd "/usr/lib64/libcurl.so" "/usr/lib64/libcurl.a" -r "*.txt"
+sd "/usr/lib64/libexpat.so" "/usr/lib64/libexpat.a" -r "*.txt"
+sd "/usr/lib64/libjsoncpp.so" "/usr/lib64/libjsoncpp.a" -r "*.txt"
