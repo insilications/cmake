@@ -4,6 +4,7 @@ acl-dev
 acl-staticdev
 brotli
 brotli-dev
+brotli-staticdev
 buildreq-cmake
 bzip2-dev
 bzip2-staticdev
@@ -51,6 +52,8 @@ libidn2-dev
 libidn2-staticdev
 libstdc++
 libstdc++-dev
+libunistring
+libunistring-dev
 libunwind
 libunwind-dev
 libxml2-dev
@@ -66,6 +69,8 @@ md4c-dev
 md4c-staticdev
 mesa-dev
 ncurses-dev
+nghttp2
+nghttp2-dev
 openjdk13
 openjdk13-dev
 openssl-dev
