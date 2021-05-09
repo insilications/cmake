@@ -5,12 +5,12 @@
 %define keepstatic 1
 Name     : cmake
 Version  : 3.20.2
-Release  : 1
-URL      : file:///aot/build/clearlinux/packages/cmake/cmake-v3.20.2.tar.gz
-Source0  : file:///aot/build/clearlinux/packages/cmake/cmake-v3.20.2.tar.gz
+Release  : 141
+URL      : https://gitlab.kitware.com/cmake/cmake/-/archive/v3.20.2/cmake-v3.20.2.tar.gz
+Source0  : https://gitlab.kitware.com/cmake/cmake/-/archive/v3.20.2/cmake-v3.20.2.tar.gz
 Summary  : General purpose data compression library
 Group    : Development/Tools
-License  : Apache-2.0 GPL-2.0+
+License  : GPL-2.0+
 Requires: cmake-bin = %{version}-%{release}
 Requires: cmake-data = %{version}-%{release}
 BuildRequires : SDL-dev
@@ -228,8 +228,8 @@ dev components for the cmake package.
 
 
 %prep
-%setup -q -n cmake
-cd %{_builddir}/cmake
+%setup -q -n cmake-v3.20.2
+cd %{_builddir}/cmake-v3.20.2
 %patch1 -p1
 
 %build
@@ -238,7 +238,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1620543393
+export SOURCE_DATE_EPOCH=1620546054
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -305,7 +305,7 @@ make  %{?_smp_mflags}  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1620543393
+export SOURCE_DATE_EPOCH=1620546054
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -739,7 +739,6 @@ popd
 /usr/share/cmake-3.20/Help/module/FindMPI.rst
 /usr/share/cmake-3.20/Help/module/FindMatlab.rst
 /usr/share/cmake-3.20/Help/module/FindMotif.rst
-/usr/share/cmake-3.20/Help/module/FindMsys.rst
 /usr/share/cmake-3.20/Help/module/FindODBC.rst
 /usr/share/cmake-3.20/Help/module/FindOpenACC.rst
 /usr/share/cmake-3.20/Help/module/FindOpenAL.rst
@@ -969,10 +968,6 @@ popd
 /usr/share/cmake-3.20/Help/policy/CMP0118.rst
 /usr/share/cmake-3.20/Help/policy/CMP0119.rst
 /usr/share/cmake-3.20/Help/policy/CMP0120.rst
-/usr/share/cmake-3.20/Help/policy/CMP0121.rst
-/usr/share/cmake-3.20/Help/policy/CMP0122.rst
-/usr/share/cmake-3.20/Help/policy/CMP0123.rst
-/usr/share/cmake-3.20/Help/policy/CMP0124.rst
 /usr/share/cmake-3.20/Help/policy/DEPRECATED.txt
 /usr/share/cmake-3.20/Help/policy/DISALLOWED_COMMAND.txt
 /usr/share/cmake-3.20/Help/prop_cache/ADVANCED.rst
@@ -1022,7 +1017,6 @@ popd
 /usr/share/cmake-3.20/Help/prop_gbl/AUTOMOC_SOURCE_GROUP.rst
 /usr/share/cmake-3.20/Help/prop_gbl/AUTOMOC_TARGETS_FOLDER.rst
 /usr/share/cmake-3.20/Help/prop_gbl/AUTORCC_SOURCE_GROUP.rst
-/usr/share/cmake-3.20/Help/prop_gbl/AUTOUIC_SOURCE_GROUP.rst
 /usr/share/cmake-3.20/Help/prop_gbl/CMAKE_CUDA_KNOWN_FEATURES.rst
 /usr/share/cmake-3.20/Help/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.rst
 /usr/share/cmake-3.20/Help/prop_gbl/CMAKE_C_KNOWN_FEATURES.rst
@@ -1446,9 +1440,7 @@ popd
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_EMBED_FRAMEWORKS_CODE_SIGN_ON_COPY.rst
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_EMBED_FRAMEWORKS_REMOVE_HEADERS_ON_COPY.rst
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_EMBED_type.rst
-/usr/share/cmake-3.20/Help/prop_tgt/XCODE_EMBED_type_CODE_SIGN_ON_COPY.rst
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_EMBED_type_PATH.rst
-/usr/share/cmake-3.20/Help/prop_tgt/XCODE_EMBED_type_REMOVE_HEADERS_ON_COPY.rst
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_EXPLICIT_FILE_TYPE.rst
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_GENERATE_SCHEME.rst
 /usr/share/cmake-3.20/Help/prop_tgt/XCODE_LINK_BUILD_PHASE_MODE.rst
@@ -1499,42 +1491,6 @@ popd
 /usr/share/cmake-3.20/Help/release/3.8.rst
 /usr/share/cmake-3.20/Help/release/3.9.rst
 /usr/share/cmake-3.20/Help/release/dev.txt
-/usr/share/cmake-3.20/Help/release/dev/0-sample-topic.rst
-/usr/share/cmake-3.20/Help/release/dev/ARMClang-cpu-arch-flags.rst
-/usr/share/cmake-3.20/Help/release/dev/FindDevIL-imported-targets.rst
-/usr/share/cmake-3.20/Help/release/dev/FindIconv-version.rst
-/usr/share/cmake-3.20/Help/release/dev/FindIntl-version.rst
-/usr/share/cmake-3.20/Help/release/dev/FindMsys.rst
-/usr/share/cmake-3.20/Help/release/dev/UseSWIG-csharp.rst
-/usr/share/cmake-3.20/Help/release/dev/UseSWIG-dependencies.rst
-/usr/share/cmake-3.20/Help/release/dev/Xcode-add_custom_command-DEPFILE.rst
-/usr/share/cmake-3.20/Help/release/dev/add_custom_command-DEPFILE-genex.rst
-/usr/share/cmake-3.20/Help/release/dev/c-std.rst
-/usr/share/cmake-3.20/Help/release/dev/cmake-install-prefix-command.rst
-/usr/share/cmake-3.20/Help/release/dev/cmake-presets-condition.rst
-/usr/share/cmake-3.20/Help/release/dev/cmake-presets-host-system-name.rst
-/usr/share/cmake-3.20/Help/release/dev/cmake-presets-optional-generator-and-binarydir.rst
-/usr/share/cmake-3.20/Help/release/dev/cmake-system-name-version.rst
-/usr/share/cmake-3.20/Help/release/dev/cmake-toolchain-command.rst
-/usr/share/cmake-3.20/Help/release/dev/cpack-dmg-filesystem.rst
-/usr/share/cmake-3.20/Help/release/dev/cpack-nsis-executable-name.rst
-/usr/share/cmake-3.20/Help/release/dev/ctest-output-junit.rst
-/usr/share/cmake-3.20/Help/release/dev/cxx-module-extensions.rst
-/usr/share/cmake-3.20/Help/release/dev/file-COPY_FILE.rst
-/usr/share/cmake-3.20/Help/release/dev/file-REAL_PATH-EXPAND_TILDE.rst
-/usr/share/cmake-3.20/Help/release/dev/file-RENAME.rst
-/usr/share/cmake-3.20/Help/release/dev/fileapi-codemodel-directory.rst
-/usr/share/cmake-3.20/Help/release/dev/foreach-variable-scope.rst
-/usr/share/cmake-3.20/Help/release/dev/fujitsu-compiler-support.rst
-/usr/share/cmake-3.20/Help/release/dev/generate-cmake-build-command-parallel.rst
-/usr/share/cmake-3.20/Help/release/dev/ifw-default-version-operator.rst
-/usr/share/cmake-3.20/Help/release/dev/list-index-arg-parsing.rst
-/usr/share/cmake-3.20/Help/release/dev/lzma-threads.rst
-/usr/share/cmake-3.20/Help/release/dev/msys.rst
-/usr/share/cmake-3.20/Help/release/dev/nmake-utf8.rst
-/usr/share/cmake-3.20/Help/release/dev/project-is-top-level.rst
-/usr/share/cmake-3.20/Help/release/dev/runtime-dll-deps.rst
-/usr/share/cmake-3.20/Help/release/dev/xcode_app_extensions.rst
 /usr/share/cmake-3.20/Help/release/index.rst
 /usr/share/cmake-3.20/Help/variable/ANDROID.rst
 /usr/share/cmake-3.20/Help/variable/APPLE.rst
@@ -1961,7 +1917,6 @@ popd
 /usr/share/cmake-3.20/Help/variable/CMAKE_Swift_LANGUAGE_VERSION.rst
 /usr/share/cmake-3.20/Help/variable/CMAKE_Swift_MODULE_DIRECTORY.rst
 /usr/share/cmake-3.20/Help/variable/CMAKE_Swift_NUM_THREADS.rst
-/usr/share/cmake-3.20/Help/variable/CMAKE_TLS_VERIFY.rst
 /usr/share/cmake-3.20/Help/variable/CMAKE_TOOLCHAIN_FILE.rst
 /usr/share/cmake-3.20/Help/variable/CMAKE_TRY_COMPILE_CONFIGURATION.rst
 /usr/share/cmake-3.20/Help/variable/CMAKE_TRY_COMPILE_PLATFORM_VARIABLES.rst
@@ -2135,7 +2090,6 @@ popd
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_BINARY_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_DESCRIPTION.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_HOMEPAGE_URL.rst
-/usr/share/cmake-3.20/Help/variable/PROJECT-NAME_IS_TOP_LEVEL.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_SOURCE_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_VERSION.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT-NAME_VERSION_MAJOR.rst
@@ -2145,7 +2099,6 @@ popd
 /usr/share/cmake-3.20/Help/variable/PROJECT_BINARY_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_DESCRIPTION.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_HOMEPAGE_URL.rst
-/usr/share/cmake-3.20/Help/variable/PROJECT_IS_TOP_LEVEL.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_NAME.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_SOURCE_DIR.rst
 /usr/share/cmake-3.20/Help/variable/PROJECT_VERSION.rst
@@ -2422,15 +2375,7 @@ popd
 /usr/share/cmake-3.20/Modules/Compiler/Embarcadero-DetermineCompiler.cmake
 /usr/share/cmake-3.20/Modules/Compiler/Flang-FindBinUtils.cmake
 /usr/share/cmake-3.20/Modules/Compiler/Flang-Fortran.cmake
-/usr/share/cmake-3.20/Modules/Compiler/Fujitsu-C.cmake
-/usr/share/cmake-3.20/Modules/Compiler/Fujitsu-CXX.cmake
 /usr/share/cmake-3.20/Modules/Compiler/Fujitsu-DetermineCompiler.cmake
-/usr/share/cmake-3.20/Modules/Compiler/Fujitsu-Fortran.cmake
-/usr/share/cmake-3.20/Modules/Compiler/Fujitsu.cmake
-/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang-C.cmake
-/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang-CXX.cmake
-/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake
-/usr/share/cmake-3.20/Modules/Compiler/FujitsuClang.cmake
 /usr/share/cmake-3.20/Modules/Compiler/G95-Fortran.cmake
 /usr/share/cmake-3.20/Modules/Compiler/GHS-C.cmake
 /usr/share/cmake-3.20/Modules/Compiler/GHS-CXX.cmake
@@ -2665,7 +2610,6 @@ popd
 /usr/share/cmake-3.20/Modules/FindMPI/test_mpi.f90.in
 /usr/share/cmake-3.20/Modules/FindMatlab.cmake
 /usr/share/cmake-3.20/Modules/FindMotif.cmake
-/usr/share/cmake-3.20/Modules/FindMsys.cmake
 /usr/share/cmake-3.20/Modules/FindODBC.cmake
 /usr/share/cmake-3.20/Modules/FindOpenACC.cmake
 /usr/share/cmake-3.20/Modules/FindOpenAL.cmake
@@ -3006,9 +2950,6 @@ popd
 /usr/share/cmake-3.20/Modules/Platform/Linux-Clang-C.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-Clang-CXX.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-Determine-CXX.cmake
-/usr/share/cmake-3.20/Modules/Platform/Linux-Fujitsu-C.cmake
-/usr/share/cmake-3.20/Modules/Platform/Linux-Fujitsu-CXX.cmake
-/usr/share/cmake-3.20/Modules/Platform/Linux-Fujitsu.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-GNU-C.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-GNU-CXX.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux-GNU-Fortran.cmake
@@ -3048,15 +2989,6 @@ popd
 /usr/share/cmake-3.20/Modules/Platform/Linux-como.cmake
 /usr/share/cmake-3.20/Modules/Platform/Linux.cmake
 /usr/share/cmake-3.20/Modules/Platform/MP-RAS.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-Clang-C.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-Clang-CXX.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-Determine-CXX.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-GNU-C.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-GNU-CXX.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-GNU-Fortran.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-GNU.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS-windres.cmake
-/usr/share/cmake-3.20/Modules/Platform/MSYS.cmake
 /usr/share/cmake-3.20/Modules/Platform/Midipix.cmake
 /usr/share/cmake-3.20/Modules/Platform/MirBSD.cmake
 /usr/share/cmake-3.20/Modules/Platform/NetBSD.cmake
