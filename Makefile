@@ -1,5 +1,5 @@
 PKG_NAME := cmake
-URL = https://github.com/Kitware/CMake.git
+URL = https://gitlab.kitware.com/cmake/cmake.git
 ARCHIVES = 
 
 include ../common/Makefile.common

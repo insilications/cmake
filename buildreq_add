@@ -1,6 +1,5 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are
-# desirable. One name per line, no whitespace.bzip2-dev
-binutils-dev
+# desirable. One name per line, no whitespace.bzip2-devbinutils-dev
 brotli
 brotli-dev
 buildreq-cmake
@@ -8,6 +7,8 @@ bzip2-dev
 bzip2-staticdev
 cairo-lib
 cmake
+compat-jsoncpp-soname-184
+compat-jsoncpp-soname-184-lib
 curl-dev
 dbus-dev
 doxygen
@@ -33,6 +34,10 @@ icu4c-lib
 jsoncpp
 jsoncpp-dev
 jsoncpp-lib
+jsoncpp-staticdev
+libarchive
+libarchive-dev
+libarchive-staticdev
 libedit
 libedit-dev
 libffi
