@@ -28,6 +28,8 @@ BuildRequires : bzip2-dev
 BuildRequires : bzip2-staticdev
 BuildRequires : cairo-lib
 BuildRequires : cmake
+BuildRequires : compat-jsoncpp-soname-184
+BuildRequires : compat-jsoncpp-soname-184-lib
 BuildRequires : cups-dev
 BuildRequires : curl-dev
 BuildRequires : dbus-dev
@@ -194,7 +196,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1620524615
+export SOURCE_DATE_EPOCH=1620525731
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -254,7 +256,7 @@ make  %{?_smp_mflags}  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1620524615
+export SOURCE_DATE_EPOCH=1620525731
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
