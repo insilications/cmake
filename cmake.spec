@@ -91,6 +91,7 @@ BuildRequires : libstdc++
 BuildRequires : libstdc++-dev
 BuildRequires : libunistring
 BuildRequires : libunistring-dev
+BuildRequires : libunistring-staticdev
 BuildRequires : libunwind
 BuildRequires : libunwind-dev
 BuildRequires : libxml2-dev
@@ -206,7 +207,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1620541761
+export SOURCE_DATE_EPOCH=1620542397
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -264,7 +265,7 @@ export CCACHE_BASEDIR=/builddir/build/BUILD
 -DBUILD_TESTING:BOOL=OFF
 ## make_prepend content
 sd "/usr/lib64/libz.so" "/usr/lib64/libz.a" $(fd -uu link.txt)
-sd "/usr/lib64/libcurl.so" "/usr/lib64/libcurl.a -lnghttp2 /usr/lib64/libidn2.a /usr/lib64/libunistring.a /usr/lib64/libssl.a /usr/lib64/libcrypto.a /usr/lib64/libzstd.a /usr/lib64/libbrotlidec.a /usr/lib64/libz.a" $(fd -uu link.txt)
+#sd "/usr/lib64/libcurl.so" "/usr/lib64/libcurl.a -lnghttp2 /usr/lib64/libidn2.a /usr/lib64/libunistring.a /usr/lib64/libssl.a /usr/lib64/libcrypto.a /usr/lib64/libzstd.a /usr/lib64/libbrotlidec.a /usr/lib64/libz.a" $(fd -uu link.txt)
 sd "/usr/lib64/libexpat.so" "/usr/lib64/libexpat.a" $(fd -uu link.txt)
 sd "/usr/lib64/libjsoncpp.so" "/usr/lib64/libjsoncpp.a" $(fd -uu link.txt)
 sd "/usr/lib64/libarchive.a" "/usr/lib64/libarchive.a /usr/lib64/libssl.a /usr/lib64/libcrypto.a /usr/lib64/libacl.a /usr/lib64/liblzo2.a /usr/lib64/liblzma.a /usr/lib64/libzstd.a /usr/lib64/liblz4.a /usr/lib64/libbz2.a /usr/lib64/libz.a /usr/lib64/libxml2.a" $(fd -uu link.txt)
@@ -273,7 +274,7 @@ make  %{?_smp_mflags}  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1620541761
+export SOURCE_DATE_EPOCH=1620542397
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
