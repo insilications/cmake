@@ -1,0 +1,11 @@
+ld-linux-x86-64.so.2
+libQt5Core.so.5
+libQt5Gui.so.5
+libQt5Widgets.so.5
+libarchive.so.13
+libc.so.6
+libcurl.so.4
+libdl.so.2
+libncurses.so.6
+libpthread.so.0
+libtinfo.so.6
