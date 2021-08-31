@@ -1,7 +1,10 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are
-# desirable. One name per line, no whitespace.bzip2-devbinutils-dev
+# desirable. One name per line, no whitespace
+Z3-dev
+Z3-staticdev
 acl-dev
 acl-staticdev
+binutils-dev
 brotli
 brotli-dev
 brotli-staticdev
@@ -26,8 +29,8 @@ fontconfig-lib
 freetype-lib
 gcc
 gcc-dev
-gcc-libs-math
 gcc-libstdc++32
+gcc-libs-math
 gcc-libubsan
 gcc-locale
 glibc-dev
@@ -107,8 +110,6 @@ xz-dev
 xz-staticdev
 yaml-cpp
 yaml-cpp-dev
-Z3-dev
-Z3-staticdev
 zlib
 zlib-dev
 zlib-staticdev
