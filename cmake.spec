@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : cmake
 Version  : 3.21.2
-Release  : 314
+Release  : 315
 URL      : file:///aot/build/clearlinux/packages/cmake/cmake-v3.21.2.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/cmake/cmake-v3.21.2.tar.gz
 Summary  : General purpose data compression library
@@ -151,7 +151,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1631099003
+export SOURCE_DATE_EPOCH=1631099514
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -241,7 +241,8 @@ export FONTCONFIG_PATH=/usr/share/defaults/fonts
 -DCMAKE_BUILD_LTO:BOOL=OFF \
 -DBUILD_QtDialog:BOOL=ON \
 -DBUILD_CursesDialog:BOOL=ON \
--DBUILD_TESTING:BOOL=OFF
+-DBUILD_TESTING:BOOL=OFF \
+-DCMAKE_BUILD_TYPE="None"
 ## make_prepend content
 sd "/usr/lib64/libz.so" "/usr/lib64/libz.a" $(fd -uu link.txt)
 #sd "/usr/lib64/libcurl.so" "/usr/lib64/libcurl.a -lnghttp2 /usr/lib64/libidn2.a /usr/lib64/libunistring.a /usr/lib64/libssl.a /usr/lib64/libcrypto.a /usr/lib64/libzstd.a /usr/lib64/libbrotlidec.a /usr/lib64/libz.a" $(fd -uu link.txt)
@@ -253,7 +254,7 @@ make  %{?_smp_mflags}  V=1 VERBOSE=1  V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1631099003
+export SOURCE_DATE_EPOCH=1631099514
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
