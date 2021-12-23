@@ -5,5 +5,6 @@ libQt5Widgets.so.5
 libarchive.so.13
 libc.so.6
 libcurl.so.4
+libm.so.6
 libncurses.so.6
 libtinfo.so.6
