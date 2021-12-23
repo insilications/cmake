@@ -1,0 +1,2 @@
+ctest --parallel 1 -V --progress || :
+exit 1

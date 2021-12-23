@@ -2,3 +2,24 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are
 # desirable. One name per line, no whitespace.
 #
+expat
+fontconfig
+glib-2.0
+glut
+gnutls
+gobject-introspection-1.0
+gtk+-2.0
+libcurl
+libexslt
+libinput
+libxml-2.0
+libxslt
+ncurses
+openssl
+Qt5Core
+Qt5DBus
+Qt5Gui
+Qt5Network
+Qt5Svg
+Qt5Widgets
+xrender
